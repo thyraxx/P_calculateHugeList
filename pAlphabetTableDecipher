@@ -1,0 +1,22 @@
+# Made for a challenge, but this was unfortunately not correct
+listAlphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "M", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+indexlist = []
+keyindex = []
+answer = ""
+i = 0
+while(1):
+	word = raw_input("Enter word: ")
+	keyword = raw_input("Enter keyword: ")
+	for x in range(0, 2):
+		for letter in word:
+			indexlist.append(listAlphabet.index(letter.upper()))
+		for keyletter in keyword:
+			keyindex.append(listAlphabet.index(keyletter.upper()))
+		word = ""
+		while(i < len(indexlist)):
+			realindex = indexlist[i] + keyindex[i]
+			i += 1
+			if realindex > 25:
+				realindex -= 26
+			word += listAlphabet[realindex]
+		print word
