@@ -3,7 +3,7 @@
 # So reworked code for multiple iterations, also didn't work
 # I was looking at this completely wrong, found out it's a Tabula Recta with a personalized key
 
-listAlphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "M", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+listAlphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 indexlist = []
 keyindex = []
 answer = ""
