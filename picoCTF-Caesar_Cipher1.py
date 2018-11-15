@@ -20,7 +20,7 @@ def realIndex(letter, offset):
 
 listAlphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
 if offsetArg == 0:
-	i = 25
+	i = 26
 else:
 	i = offsetArg
 
