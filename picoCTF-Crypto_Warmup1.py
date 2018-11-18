@@ -1,56 +1,62 @@
-# Made for picoCTF Crypto Warmup1 challenge
-# Could use almost everything from the Wrong version I made, just needed to reverse it
+# Made for picoCTF challenge, caesar cipher1
 import sys
 
-word = sys.argv[1]
-keyword = sys.argv[2]
+cipher = sys.argv[1]
+answer = ""
+
+# if no offset is given, let's try them all!
+if len(sys.argv) == 3:
+	offsetArg = int(sys.argv[2])
+else:
+	offsetArg = 0
+
+def realIndex(letter, offset):
+	global answer
+	realindex = listAlphabet.index(letter.upper()) + offset
+	
+	if realindex > 25:
+			realindex -= 26
+	answer += listAlphabet[realindex]
 
 listAlphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
-indexlist = []
-keyindex = []
-answer = ""
-i = 0
-for letter in word:
-	indexlist.append(listAlphabet.index(letter.upper()))
-for keyletter in keyword:
-	keyindex.append(listAlphabet.index(keyletter.upper()))
-while(i < len(indexlist)):
-	realindex = indexlist[i] - keyindex[i]
-	i += 1
-	if realindex < 0:
-		realindex += 26
-	answer += listAlphabet[realindex]
-print answer
-# answer: SECRETMESSAGE
+if offsetArg == 0:
+	start = 0
+	i = 26
+else:
+	start = offsetArg - 1
+	i = offsetArg
+	
 
-#     A B C D E F G H I J K L M N O P Q R S T U V W X Y Z 
-#    +----------------------------------------------------
-# A | A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
-# B | B C D E F G H I J K L M N O P Q R S T U V W X Y Z A
-# C | C D E F G H I J K L M N O P Q R S T U V W X Y Z A B
-# D | D E F G H I J K L M N O P Q R S T U V W X Y Z A B C
-# E | E F G H I J K L M N O P Q R S T U V W X Y Z A B C D
-# F | F G H I J K L M N O P Q R S T U V W X Y Z A B C D E
-# G | G H I J K L M N O P Q R S T U V W X Y Z A B C D E F
-# H | H I J K L M N O P Q R S T U V W X Y Z A B C D E F G
-# I | I J K L M N O P Q R S T U V W X Y Z A B C D E F G H
-# J | J K L M N O P Q R S T U V W X Y Z A B C D E F G H I
-# K | K L M N O P Q R S T U V W X Y Z A B C D E F G H I J
-# L | L M N O P Q R S T U V W X Y Z A B C D E F G H I J K
-# M | M N O P Q R S T U V W X Y Z A B C D E F G H I J K L
-# N | N O P Q R S T U V W X Y Z A B C D E F G H I J K L M
-# O | O P Q R S T U V W X Y Z A B C D E F G H I J K L M N
-# P | P Q R S T U V W X Y Z A B C D E F G H I J K L M N O
-# Q | Q R S T U V W X Y Z A B C D E F G H I J K L M N O P
-# R | R S T U V W X Y Z A B C D E F G H I J K L M N O P Q
-# S | S T U V W X Y Z A B C D E F G H I J K L M N O P Q R
-# T | T U V W X Y Z A B C D E F G H I J K L M N O P Q R S
-# U | U V W X Y Z A B C D E F G H I J K L M N O P Q R S T
-# V | V W X Y Z A B C D E F G H I J K L M N O P Q R S T U
-# W | W X Y Z A B C D E F G H I J K L M N O P Q R S T U V
-# X | X Y Z A B C D E F G H I J K L M N O P Q R S T U V W
-# Y | Y Z A B C D E F G H I J K L M N O P Q R S T U V W X
-# Z | Z A B C D E F G H I J K L M N O P Q R S T U V W X Y
+for offset in range(start, i):
+	for letter in cipher:
+		realIndex(letter, offset)
+	print offset, answer.lower()
+	answer = ""
 
-# message: 	llkjmlmpadkkc
-# key: 		thisisalilkey
+# python picoCTF-caesar_cipher1.py yjhipvddsdasrpthpgrxewtgdqnjytto
+
+# 0 yjhipvddsdasrpthpgrxewtg dqnjytto
+# 1 zkijqweetebtsquiqhsyfxuh erokzuup
+# 2 aljkrxffufcutrvjritzgyvi fsplavvq
+# 3 bmklsyggvgdvuswksjuahzwj gtqmbwwr
+# 4 cnlmtzhhwhewvtxltkvbiaxk hurncxxs
+# 5 domnuaiixifxwuymulwcjbyl ivsodyyt
+# 6 epnovbjjyjgyxvznvmxdkczm jwtpezzu
+# 7 fqopwckkzkhzywaownyeldan kxuqfaav
+# 8 grpqxdllaliazxbpxozfmebo lyvrgbbw
+# 9 hsqryemmbmjbaycqypagnfcp mzwshccx
+# 10 itrszfnncnkcbzdrzqbhogdq naxtiddy
+# 11 justagoodoldcaesarcipher obyujeez <-- Correct one
+# 12 kvtubhppepmedbftbsdjqifs pczvkffa
+# 13 lwuvciqqfqnfecguctekrjgt qdawlggb
+# 14 mxvwdjrrgrogfdhvduflskhu rebxmhhc
+# 15 nywxeksshsphgeiwevgmtliv sfcyniid
+# 16 ozxyflttitqihfjxfwhnumjw tgdzojje
+# 17 payzgmuujurjigkygxiovnkx uheapkkf
+# 18 qbzahnvvkvskjhlzhyjpwoly vifbqllg
+# 19 rcabiowwlwtlkimaizkqxpmz wjgcrmmh
+# 20 sdbcjpxxmxumljnbjalryqna xkhdsnni
+# 21 tecdkqyynyvnmkockbmszrob ylietooj
+# 22 ufdelrzzozwonlpdlcntaspc zmjfuppk
+# 23 vgefmsaapaxpomqemdoubtqd ankgvqql
+# 24 whfgntbbqbyqpnrfnepvcure bolhwrrm
